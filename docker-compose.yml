@@ -75,7 +75,7 @@ services:
     - INFLUX_USERNAME=dba
     - INFLUX_PASSWORD=supremo
     - INFLUXDB_UDP_ENABLED=true
-    - INFLUXDB_UDP_BIND_ADDRESS=0.0.0.0:8087
+    - INFLUXDB_UDP_BIND_ADDRESS=0.0.0.0:8086
     - INFLUXDB_UDP_DATABASE=udp
     volumes:
     - ./volumes/influxdb_ais/data:/var/lib/influxdb
