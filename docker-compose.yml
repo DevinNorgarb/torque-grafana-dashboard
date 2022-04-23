@@ -97,6 +97,8 @@ services:
     - ./volumes/mosquitto/log:/mosquitto/log
     - ./volumes/mosquitto/pwfile:/mosquitto/pwfile
 
+
+
   n8n:
     container_name: "n8n"
     restart: unless-stopped
@@ -163,6 +165,30 @@ services:
     depends_on:
     - influxdb
     - mosquitto
+
+  db:
+    image: postgres:14.1-alpine
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - '5432:5432'
+    volumes: 
+      - ./volumes/postgres:/var/lib/postgresql/data
+
+  pgadmin:
+    container_name: pgadmin4_container
+    image: dpage/pgadmin4
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: root
+    ports:
+      - "5050:80"
+
+
+
 
 networks:
 
