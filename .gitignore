@@ -1,5 +1,4 @@
 #ignore data folders for containers
-/services/
 /volumes/
 /backups/
 /.tmp/*
@@ -20,4 +19,3 @@ post_restore.sh
 
 .vscode
 *.code-workspace
-
