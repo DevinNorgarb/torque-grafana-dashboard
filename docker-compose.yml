@@ -231,6 +231,38 @@ volumes:
   prometheus-data:
   my-data:
 
+  netdata:
+    image: netdata/netdata
+    container_name: netdata
+    hostname: obd-stack.devsdev.com # set to fqdn of host
+    ports:
+      - 19999:19999
+    restart: unless-stopped
+    cap_add:
+      - SYS_PTRACE
+    security_opt:
+      - apparmor:unconfined
+    volumes:
+      - netdataconfig:/etc/netdata
+      - netdatalib:/var/lib/netdata
+      - netdatacache:/var/cache/netdata
+      - /etc/passwd:/host/etc/passwd:ro
+      - /etc/group:/host/etc/group:ro
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /etc/os-release:/host/etc/os-release:ro
+    environment:
+      - NETDATA_CLAIM_TOKEN=HDbct6IroAKmY-Iru_JuzwpCWpJu6tMi9bv9g0YB197kWQoWuJhl8-vCU4VGXzpECac0jtl8O63ARtBdypatWwRTmcR6IPIuZgjWH9IqvcPz2So3b8HxtzH9nhsy58ydQ0Rz7YQ
+      - NETDATA_CLAIM_URL=https://app.netdata.cloud
+      - NETDATA_CLAIM_ROOMS=
+
+volumes:
+  prometheus-data:
+  my-data:
+  netdataconfig:
+  netdatalib:
+  netdatacache:
+
 
 networks:
 
